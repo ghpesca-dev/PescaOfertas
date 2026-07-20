@@ -37,32 +37,32 @@
     font-display: swap;
   }
 
-  /* Identidade única e escura de propósito — balcão de loja à noite com
-     cupons de papel claro por cima. Não varia com o tema do sistema/visor
-     (prefers-color-scheme) nem com o toggle da página: decisão de marca do
-     cliente (2026-07-20), não uma omissão de suporte a tema claro. */
+  /* Identidade única e escura de propósito — balcão neon de madrugada:
+     preto quase puro, cupons em tom gelo/menta brilhando por cima, acento
+     magenta + ciano elétrico. Não varia com o tema do sistema/visor nem com
+     o toggle da página: decisão de marca do cliente (2026-07-20), não uma
+     omissão de suporte a tema claro. */
   :root {
-    --page: #15171a;
-    --page-ink: #ece7da;
-    --page-ink-soft: #96907f;
-    --page-line: rgba(236, 231, 218, 0.16);
+    --page: #0c0d11;
+    --page-ink: #eef0f6;
+    --page-ink-soft: #8b8fa0;
+    --page-line: rgba(238, 240, 246, 0.14);
 
-    --card: #f4efe1;
-    --card-alt: #ece5d3;
-    --card-ink: #221f24;
-    --card-ink-soft: #55504f;
-    --card-line: rgba(34, 31, 36, 0.16);
-    --card-shadow: rgba(0, 0, 0, 0.5);
+    --card: #e3f7f1;
+    --card-alt: #dbeeff;
+    --card-ink: #10151a;
+    --card-ink-soft: #4c5560;
+    --card-line: rgba(16, 21, 26, 0.14);
+    --card-shadow: rgba(0, 0, 0, 0.55);
 
-    --stamp-fill: #cf3c17;
-    --stamp-bright: #ff6a42;
-    --stamp-deep: #a12c10;
+    --stamp-fill: #ff2ea6;
+    --stamp-bright: #ff5cc2;
+    --stamp-deep: #b5127a;
 
-    --jade-fill: #1a6353;
-    --jade-bright: #3aa98d;
-    --jade-deep: #0f4a3e;
+    --jade-bright: #22e0ff;
+    --jade-deep: #0c7f94;
 
-    --gold: #e0ac52;
+    --gold: #ffe14d;
   }
 
   * { box-sizing: border-box; }
@@ -177,7 +177,8 @@
     border: 2px solid var(--card-ink);
     border-radius: 4px;
     padding: clamp(8px, 2vw, 14px) clamp(14px, 3vw, 22px);
-    box-shadow: 0 16px 32px -12px var(--card-shadow), 0 3px 10px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 16px 32px -12px var(--card-shadow), 0 3px 10px rgba(0, 0, 0, 0.35),
+      0 0 26px -10px color-mix(in srgb, var(--jade-bright) 60%, transparent);
   }
   .receipt-row {
     display: grid;
@@ -324,13 +325,15 @@
     border: 2px solid var(--card-ink);
     border-radius: 4px;
     padding: 16px 18px;
-    min-height: 84px;
+    min-height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 4px;
+    align-items: flex-start;
+    gap: 8px;
     text-decoration: none;
-    box-shadow: 0 12px 24px -10px var(--card-shadow), 0 3px 8px rgba(0, 0, 0, 0.32);
+    box-shadow: 0 12px 24px -10px var(--card-shadow), 0 3px 8px rgba(0, 0, 0, 0.32),
+      0 0 22px -8px color-mix(in srgb, var(--stamp-fill) 55%, transparent);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     -webkit-mask-image:
       radial-gradient(circle at 8px 8px, transparent 8px, black 8.5px),
@@ -351,31 +354,32 @@
   }
   .ticket:hover, .ticket:focus-visible {
     transform: translateY(-3px);
-    box-shadow: 0 18px 30px -10px var(--card-shadow), 0 4px 10px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 18px 30px -10px var(--card-shadow), 0 4px 10px rgba(0, 0, 0, 0.38),
+      0 0 30px -6px color-mix(in srgb, var(--stamp-fill) 70%, transparent);
   }
   .ticket:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-  .ticket-tag {
-    font-family: 'UbuntuTicket', ui-monospace, monospace;
-    font-size: 0.68rem;
-    color: var(--card-ink-soft);
-  }
   .ticket h3 {
     font-family: 'UbuntuDisplay', sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
   }
-  .ticket h3 .arrow {
+  .ticket-go {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
-    font-size: 0.95rem;
-    color: var(--jade-deep);
-    transition: transform 0.15s ease;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--stamp-fill);
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition: transform 0.15s ease, background-color 0.15s ease;
   }
-  .ticket:hover h3 .arrow, .ticket:focus-visible h3 .arrow { transform: translateX(4px); }
+  .ticket:hover .ticket-go, .ticket:focus-visible .ticket-go {
+    background: var(--stamp-bright);
+    transform: translateX(3px);
+  }
   .ticket.geral { background: var(--card-alt); }
 
   /* ---------- transparency ---------- */
@@ -444,28 +448,28 @@
     <p class="lede">Ofertas boas, direto no seu WhatsApp — grátis, sem cadastro. Toca no seu grupo:</p>
     <div class="cat-grid">
       <a class="ticket reveal" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
-        <span class="ticket-tag">ELE</span>
-        <h3>Eletrônicos <span class="arrow">→</span></h3>
+        <h3>Eletrônicos</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
       <a class="ticket reveal" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
-        <span class="ticket-tag">MOD</span>
-        <h3>Moda <span class="arrow">→</span></h3>
+        <h3>Moda</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
       <a class="ticket reveal" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
-        <span class="ticket-tag">CAS</span>
-        <h3>Casa <span class="arrow">→</span></h3>
+        <h3>Casa</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
       <a class="ticket reveal" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
-        <span class="ticket-tag">BEL</span>
-        <h3>Beleza <span class="arrow">→</span></h3>
+        <h3>Beleza</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
       <a class="ticket reveal" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
-        <span class="ticket-tag">FIT</span>
-        <h3>Fitness <span class="arrow">→</span></h3>
+        <h3>Fitness</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
       <a class="ticket geral reveal" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
-        <span class="ticket-tag">GER</span>
-        <h3>Geral <span class="arrow">→</span></h3>
+        <h3>Geral</h3>
+        <span class="ticket-go">Entrar →</span>
       </a>
     </div>
   </div>
