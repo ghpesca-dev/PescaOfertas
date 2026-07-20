@@ -458,22 +458,23 @@
 
   /* ---------- footer / receipt ---------- */
   footer {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--paper-raised);
+    color: var(--ink);
+    border-top: 4px solid var(--ink);
     padding: clamp(32px, 6vw, 48px) 0 clamp(20px, 4vw, 28px);
   }
   .barcode {
     height: 34px;
     background: repeating-linear-gradient(
       90deg,
-      var(--paper) 0 2px,
+      var(--ink) 0 2px,
       transparent 2px 3px,
-      var(--paper) 3px 4px,
+      var(--ink) 3px 4px,
       transparent 4px 7px,
-      var(--paper) 7px 9px,
+      var(--ink) 7px 9px,
       transparent 9px 11px
     );
-    opacity: 0.85;
+    opacity: 0.8;
     margin-bottom: 18px;
     max-width: 260px;
   }
@@ -484,16 +485,15 @@
     gap: 20px;
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.78rem;
-    color: var(--paper);
-    opacity: 0.75;
+    color: var(--ink-soft);
   }
-  .foot-grid strong { opacity: 1; }
+  .foot-grid strong { color: var(--ink); }
   .disclaimer {
     margin-top: 18px;
     padding-top: 18px;
-    border-top: 1px solid rgba(236, 227, 210, 0.25);
+    border-top: 1px dashed var(--line);
     font-size: 0.76rem;
-    opacity: 0.65;
+    color: var(--ink-soft);
     max-width: 70ch;
   }
 </style>
@@ -515,6 +515,45 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="#grupos">Escolher meu grupo →</a>
       <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
+    </div>
+  </div>
+</div>
+
+<div class="categories" id="grupos">
+  <div class="wrap">
+    <span class="eyebrow">Seis grupos, um clique</span>
+    <h2 class="section-title">Qual é o seu?</h2>
+    <div class="cat-grid">
+      <article class="ticket reveal">
+        <div class="ticket-head"><h3>Eletrônicos</h3><span class="ticket-tag">ELE</span></div>
+        <p>Celular, notebook, som, mouse, teclado — tudo que tem fio, tela ou bateria.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-category="eletronicos">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
+      <article class="ticket reveal">
+        <div class="ticket-head"><h3>Moda</h3><span class="ticket-tag">MOD</span></div>
+        <p>Tênis, roupa, relógio, calçado, acessório — pra vestir bem gastando pouco.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-category="moda">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
+      <article class="ticket reveal">
+        <div class="ticket-head"><h3>Casa</h3><span class="ticket-tag">CAS</span></div>
+        <p>Cozinha, decoração, eletrodoméstico, ferramenta — pra casa render mais.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-category="casa">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
+      <article class="ticket reveal">
+        <div class="ticket-head"><h3>Beleza</h3><span class="ticket-tag">BEL</span></div>
+        <p>Perfume, skincare, maquiagem — os achadinhos que sempre somem rápido.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-category="beleza">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
+      <article class="ticket reveal">
+        <div class="ticket-head"><h3>Fitness</h3><span class="ticket-tag">FIT</span></div>
+        <p>Whey, creatina, suplemento, roupa de treino — pra academia sair mais barata.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-category="fitness">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
+      <article class="ticket geral reveal">
+        <div class="ticket-head"><h3>Geral</h3><span class="ticket-tag">GER</span></div>
+        <p>Não coube em nenhuma categoria acima, mas ainda é uma baita promoção.</p>
+        <a class="ticket-cta" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-category="geral">ENTRAR NO GRUPO <span class="arrow">→</span></a>
+      </article>
     </div>
   </div>
 </div>
@@ -604,45 +643,6 @@
         <h3>A oferta na hora</h3>
         <p>Assim que o desconto aparece, cai no grupo — pode silenciar as notificações e só abrir quando quiser.</p>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="categories" id="grupos">
-  <div class="wrap">
-    <span class="eyebrow">Seis grupos, um clique</span>
-    <h2 class="section-title">Qual é o seu?</h2>
-    <div class="cat-grid">
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Eletrônicos</h3><span class="ticket-tag">ELE</span></div>
-        <p>Celular, notebook, som, mouse, teclado — tudo que tem fio, tela ou bateria.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-category="eletronicos">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Moda</h3><span class="ticket-tag">MOD</span></div>
-        <p>Tênis, roupa, relógio, calçado, acessório — pra vestir bem gastando pouco.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-category="moda">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Casa</h3><span class="ticket-tag">CAS</span></div>
-        <p>Cozinha, decoração, eletrodoméstico, ferramenta — pra casa render mais.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-category="casa">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Beleza</h3><span class="ticket-tag">BEL</span></div>
-        <p>Perfume, skincare, maquiagem — os achadinhos que sempre somem rápido.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-category="beleza">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Fitness</h3><span class="ticket-tag">FIT</span></div>
-        <p>Whey, creatina, suplemento, roupa de treino — pra academia sair mais barata.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-category="fitness">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket geral reveal">
-        <div class="ticket-head"><h3>Geral</h3><span class="ticket-tag">GER</span></div>
-        <p>Não coube em nenhuma categoria acima, mas ainda é uma baita promoção.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-category="geral">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
     </div>
   </div>
 </div>
