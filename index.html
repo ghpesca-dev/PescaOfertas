@@ -37,67 +37,40 @@
     font-display: swap;
   }
 
+  /* Identidade única e escura de propósito — balcão de loja à noite com
+     cupons de papel claro por cima. Não varia com o tema do sistema/visor
+     (prefers-color-scheme) nem com o toggle da página: decisão de marca do
+     cliente (2026-07-20), não uma omissão de suporte a tema claro. */
   :root {
-    --paper: #ece5d3;
-    --paper-raised: #f4efe1;
-    --ink: #221f24;
-    --ink-soft: #55504f;
-    --stamp: #cf3c17;
-    --stamp-ink: #a12c10;
-    --jade: #1a6353;
-    --jade-ink: #0f4a3e;
-    --gold: #b9832c;
-    --line: rgba(34, 31, 36, 0.16);
-    --shadow: rgba(34, 31, 36, 0.18);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #1b1712;
-      --paper-raised: #241f19;
-      --ink: #ece3d2;
-      --ink-soft: #b7ac9c;
-      --stamp: #e2603f;
-      --stamp-ink: #ff8a68;
-      --jade: #3aa98d;
-      --jade-ink: #6cd9bd;
-      --gold: #e0ac52;
-      --line: rgba(236, 227, 210, 0.18);
-      --shadow: rgba(0, 0, 0, 0.45);
-    }
-  }
-  :root[data-theme='dark'] {
-    --paper: #1b1712;
-    --paper-raised: #241f19;
-    --ink: #ece3d2;
-    --ink-soft: #b7ac9c;
-    --stamp: #e2603f;
-    --stamp-ink: #ff8a68;
-    --jade: #3aa98d;
-    --jade-ink: #6cd9bd;
+    --page: #15171a;
+    --page-ink: #ece7da;
+    --page-ink-soft: #96907f;
+    --page-line: rgba(236, 231, 218, 0.16);
+
+    --card: #f4efe1;
+    --card-alt: #ece5d3;
+    --card-ink: #221f24;
+    --card-ink-soft: #55504f;
+    --card-line: rgba(34, 31, 36, 0.16);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+
+    --stamp-fill: #cf3c17;
+    --stamp-bright: #ff6a42;
+    --stamp-deep: #a12c10;
+
+    --jade-fill: #1a6353;
+    --jade-bright: #3aa98d;
+    --jade-deep: #0f4a3e;
+
     --gold: #e0ac52;
-    --line: rgba(236, 227, 210, 0.18);
-    --shadow: rgba(0, 0, 0, 0.45);
-  }
-  :root[data-theme='light'] {
-    --paper: #ece5d3;
-    --paper-raised: #f4efe1;
-    --ink: #221f24;
-    --ink-soft: #55504f;
-    --stamp: #cf3c17;
-    --stamp-ink: #a12c10;
-    --jade: #1a6353;
-    --jade-ink: #0f4a3e;
-    --gold: #b9832c;
-    --line: rgba(34, 31, 36, 0.16);
-    --shadow: rgba(34, 31, 36, 0.18);
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--page);
+    color: var(--page-ink);
     font-family: 'UbuntuDisplay', ui-sans-serif, system-ui, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
@@ -114,7 +87,7 @@
   /* ---------- masthead ---------- */
   .masthead {
     padding: clamp(28px, 5vw, 40px) 0 clamp(48px, 8vw, 80px);
-    border-bottom: 3px solid var(--ink);
+    border-bottom: 3px solid var(--page-ink);
     position: relative;
   }
   .masthead-top {
@@ -139,17 +112,17 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--stamp);
+    background: var(--stamp-fill);
     display: inline-block;
   }
   .ticket-no {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.72rem;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     text-align: right;
     line-height: 1.4;
   }
-  .ticket-no b { color: var(--ink); font-weight: 700; }
+  .ticket-no b { color: var(--page-ink); font-weight: 700; }
 
   .stamp-wrap {
     display: inline-block;
@@ -172,7 +145,7 @@
     line-height: 0.86;
     letter-spacing: -0.01em;
     margin: 0;
-    color: var(--stamp);
+    color: var(--stamp-bright);
     text-wrap: balance;
     border: 5px solid currentColor;
     padding: 0.12em 0.22em 0.16em;
@@ -181,55 +154,30 @@
   .lede {
     max-width: 62ch;
     font-size: clamp(1.05rem, 2vw, 1.28rem);
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     margin: clamp(20px, 4vw, 30px) 0 clamp(26px, 5vw, 34px);
     text-wrap: balance;
   }
-  .lede strong { color: var(--ink); font-weight: 700; }
-
-  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .btn {
-    font-family: 'UbuntuDisplay', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 22px;
-    border-radius: 3px;
-    border: 2.5px solid var(--ink);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .btn-primary {
-    background: var(--jade);
-    color: #fff;
-    border-color: var(--jade-ink);
-    box-shadow: 3px 3px 0 var(--jade-ink);
-  }
-  .btn-primary:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--jade-ink); }
-  .btn-ghost { color: var(--ink); }
-  .btn-ghost:hover { background: var(--paper-raised); }
-  .note-inline { font-family: 'UbuntuTicket', ui-monospace, monospace; font-size: 0.78rem; color: var(--ink-soft); }
+  .lede strong { color: var(--page-ink); font-weight: 700; }
 
   /* ---------- prova (recibo de descontos reais) ---------- */
   .proof {
     padding: clamp(40px, 7vw, 68px) 0;
-    border-bottom: 3px dashed var(--line);
+    border-bottom: 3px dashed var(--page-line);
   }
   .proof-note {
     max-width: 58ch;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     margin: 0.4em 0 0;
   }
   .receipt {
     margin-top: clamp(24px, 4vw, 32px);
-    background: var(--paper-raised);
-    border: 2px solid var(--ink);
+    background: var(--card);
+    color: var(--card-ink);
+    border: 2px solid var(--card-ink);
     border-radius: 4px;
     padding: clamp(8px, 2vw, 14px) clamp(14px, 3vw, 22px);
-    box-shadow: 4px 4px 0 var(--shadow);
+    box-shadow: 0 16px 32px -12px var(--card-shadow), 0 3px 10px rgba(0, 0, 0, 0.35);
   }
   .receipt-row {
     display: grid;
@@ -237,7 +185,7 @@
     align-items: center;
     gap: clamp(10px, 2vw, 18px);
     padding: 14px 0;
-    border-bottom: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--card-line);
   }
   .receipt-row:last-of-type { border-bottom: none; }
   .receipt-thumb {
@@ -245,14 +193,14 @@
     height: 52px;
     object-fit: cover;
     border-radius: 3px;
-    border: 1.5px solid var(--ink);
-    background: var(--paper);
+    border: 1.5px solid var(--card-ink);
+    background: var(--card);
   }
   .receipt-cat {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.68rem;
     letter-spacing: 0.06em;
-    color: var(--jade-ink);
+    color: var(--jade-deep);
     display: block;
   }
   .receipt-title {
@@ -267,22 +215,22 @@
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
-  .receipt-price s { display: block; font-size: 0.76rem; color: var(--ink-soft); }
+  .receipt-price s { display: block; font-size: 0.76rem; color: var(--card-ink-soft); }
   .receipt-price strong { display: block; font-size: 1.05rem; }
   .receipt-badge {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-weight: 700;
     font-size: 0.82rem;
     color: #fff;
-    background: var(--stamp);
+    background: var(--stamp-fill);
     border-radius: 3px;
     padding: 5px 8px;
     white-space: nowrap;
     animation: badgepulse 2.6s ease-in-out infinite;
   }
   @keyframes badgepulse {
-    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stamp) 45%, transparent); }
-    50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--stamp) 0%, transparent); }
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stamp-fill) 45%, transparent); }
+    50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--stamp-fill) 0%, transparent); }
   }
   @media (prefers-reduced-motion: reduce) {
     .receipt-badge { animation: none; }
@@ -306,7 +254,7 @@
   }
   .receipt-total strong {
     font-size: 1.2rem;
-    color: var(--stamp-ink);
+    color: var(--stamp-deep);
     font-variant-numeric: tabular-nums;
   }
   @media (max-width: 640px) {
@@ -318,7 +266,7 @@
   /* ---------- how it works ---------- */
   .steps {
     padding: clamp(40px, 7vw, 72px) 0;
-    border-bottom: 3px dashed var(--line);
+    border-bottom: 3px dashed var(--page-line);
   }
   .steps-grid {
     display: grid;
@@ -333,7 +281,7 @@
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-weight: 700;
     font-size: 0.85rem;
-    color: var(--stamp);
+    color: var(--stamp-bright);
     letter-spacing: 0.06em;
   }
   .step h3 {
@@ -342,18 +290,18 @@
     font-size: 1.3rem;
     margin: 0.35em 0 0.3em;
   }
-  .step p { margin: 0; color: var(--ink-soft); max-width: 40ch; }
+  .step p { margin: 0; color: var(--page-ink-soft); max-width: 40ch; }
   .eyebrow {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--jade-ink);
+    color: var(--jade-bright);
     display: inline-flex;
     align-items: center;
     gap: 8px;
   }
-  .eyebrow::before { content: '✓'; color: var(--jade); }
+  .eyebrow::before { content: '✓'; color: var(--jade-bright); }
   .section-title {
     font-family: 'UbuntuDisplay', sans-serif;
     font-weight: 700;
@@ -372,14 +320,15 @@
   }
   .ticket {
     position: relative;
-    background: var(--paper-raised);
-    border: 2px solid var(--ink);
+    background: var(--card);
+    color: var(--card-ink);
+    border: 2px solid var(--card-ink);
     border-radius: 4px;
     padding: 22px 22px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    box-shadow: 4px 4px 0 var(--shadow);
+    box-shadow: 0 16px 32px -12px var(--card-shadow), 0 3px 10px rgba(0, 0, 0, 0.35);
     -webkit-mask-image:
       radial-gradient(circle at 8px 8px, transparent 8px, black 8.5px),
       radial-gradient(circle at calc(100% - 8px) 8px, transparent 8px, black 8.5px),
@@ -401,13 +350,13 @@
     content: '';
     position: absolute;
     left: 14px; right: 14px; top: 50%;
-    border-top: 2px dashed var(--line);
+    border-top: 2px dashed var(--card-line);
   }
   .ticket-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
   .ticket-tag {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.72rem;
-    color: var(--ink-soft);
+    color: var(--card-ink-soft);
   }
   .ticket h3 {
     font-family: 'UbuntuDisplay', sans-serif;
@@ -417,7 +366,7 @@
   }
   .ticket p {
     margin: 0;
-    color: var(--ink-soft);
+    color: var(--card-ink-soft);
     font-size: 0.95rem;
     padding-top: 14px;
   }
@@ -431,50 +380,51 @@
     font-weight: 700;
     font-size: 0.85rem;
     text-decoration: none;
-    color: var(--jade-ink);
+    color: var(--jade-deep);
   }
-  .ticket-cta:hover { color: var(--jade); }
+  .ticket-cta:hover { color: var(--jade-fill); }
   .ticket-cta .arrow { transition: transform 0.15s ease; }
   .ticket-cta:hover .arrow { transform: translateX(4px); }
-  .ticket.geral { background: var(--paper); }
+  .ticket-cta:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+  .ticket.geral { background: var(--card-alt); }
 
   /* ---------- transparency ---------- */
   .transparency {
     padding: clamp(40px, 6vw, 60px) 0;
-    border-top: 3px dashed var(--line);
+    border-top: 3px dashed var(--page-line);
   }
   .transparency .section-title { max-width: 30ch; }
   .transparency p {
     max-width: 68ch;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     font-size: 1rem;
   }
   .store-list {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.82rem;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     letter-spacing: 0.02em;
   }
 
   /* ---------- footer / receipt ---------- */
   footer {
-    background: var(--paper-raised);
-    color: var(--ink);
-    border-top: 4px solid var(--ink);
+    background: var(--page);
+    color: var(--page-ink);
+    border-top: 3px dashed var(--page-line);
     padding: clamp(32px, 6vw, 48px) 0 clamp(20px, 4vw, 28px);
   }
   .barcode {
     height: 34px;
     background: repeating-linear-gradient(
       90deg,
-      var(--ink) 0 2px,
+      var(--page-ink) 0 2px,
       transparent 2px 3px,
-      var(--ink) 3px 4px,
+      var(--page-ink) 3px 4px,
       transparent 4px 7px,
-      var(--ink) 7px 9px,
+      var(--page-ink) 7px 9px,
       transparent 9px 11px
     );
-    opacity: 0.8;
+    opacity: 0.85;
     margin-bottom: 18px;
     max-width: 260px;
   }
@@ -485,15 +435,15 @@
     gap: 20px;
     font-family: 'UbuntuTicket', ui-monospace, monospace;
     font-size: 0.78rem;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
   }
-  .foot-grid strong { color: var(--ink); }
+  .foot-grid strong { color: var(--page-ink); }
   .disclaimer {
     margin-top: 18px;
     padding-top: 18px;
-    border-top: 1px dashed var(--line);
+    border-top: 1px dashed var(--page-line);
     font-size: 0.76rem;
-    color: var(--ink-soft);
+    color: var(--page-ink-soft);
     max-width: 70ch;
   }
 </style>
@@ -510,12 +460,8 @@
     <p class="lede">
       A gente garimpa desconto de verdade em <strong>Mercado Livre, Amazon, Kabum, C&amp;A</strong> e outras
       lojas parceiras, filtra o que presta e manda direto pro seu WhatsApp — várias vezes por dia,
-      sem cadastro e sem custar nada pra entrar.
+      sem cadastro e sem custar nada pra entrar. Escolhe seu grupo logo abaixo — um toque e já entra.
     </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#grupos">Escolher meu grupo →</a>
-      <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
-    </div>
   </div>
 </div>
 
