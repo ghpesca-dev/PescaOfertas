@@ -42,8 +42,8 @@
     --paper-raised: #f4efe1;
     --ink: #221f24;
     --ink-soft: #55504f;
-    --stamp: #b5391f;
-    --stamp-ink: #8f2c17;
+    --stamp: #cf3c17;
+    --stamp-ink: #a12c10;
     --jade: #1a6353;
     --jade-ink: #0f4a3e;
     --gold: #b9832c;
@@ -83,8 +83,8 @@
     --paper-raised: #f4efe1;
     --ink: #221f24;
     --ink-soft: #55504f;
-    --stamp: #b5391f;
-    --stamp-ink: #8f2c17;
+    --stamp: #cf3c17;
+    --stamp-ink: #a12c10;
     --jade: #1a6353;
     --jade-ink: #0f4a3e;
     --gold: #b9832c;
@@ -212,6 +212,108 @@
   .btn-ghost { color: var(--ink); }
   .btn-ghost:hover { background: var(--paper-raised); }
   .note-inline { font-family: 'UbuntuTicket', ui-monospace, monospace; font-size: 0.78rem; color: var(--ink-soft); }
+
+  /* ---------- prova (recibo de descontos reais) ---------- */
+  .proof {
+    padding: clamp(40px, 7vw, 68px) 0;
+    border-bottom: 3px dashed var(--line);
+  }
+  .proof-note {
+    max-width: 58ch;
+    color: var(--ink-soft);
+    margin: 0.4em 0 0;
+  }
+  .receipt {
+    margin-top: clamp(24px, 4vw, 32px);
+    background: var(--paper-raised);
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    padding: clamp(8px, 2vw, 14px) clamp(14px, 3vw, 22px);
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .receipt-row {
+    display: grid;
+    grid-template-columns: 52px 1fr auto auto;
+    align-items: center;
+    gap: clamp(10px, 2vw, 18px);
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .receipt-row:last-of-type { border-bottom: none; }
+  .receipt-thumb {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+  }
+  .receipt-cat {
+    font-family: 'UbuntuTicket', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--jade-ink);
+    display: block;
+  }
+  .receipt-title {
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    max-width: 42ch;
+  }
+  .receipt-price {
+    text-align: right;
+    font-family: 'UbuntuTicket', ui-monospace, monospace;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .receipt-price s { display: block; font-size: 0.76rem; color: var(--ink-soft); }
+  .receipt-price strong { display: block; font-size: 1.05rem; }
+  .receipt-badge {
+    font-family: 'UbuntuTicket', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #fff;
+    background: var(--stamp);
+    border-radius: 3px;
+    padding: 5px 8px;
+    white-space: nowrap;
+    animation: badgepulse 2.6s ease-in-out infinite;
+  }
+  @keyframes badgepulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--stamp) 45%, transparent); }
+    50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--stamp) 0%, transparent); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .receipt-badge { animation: none; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+  .receipt-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0 6px;
+    font-family: 'UbuntuTicket', ui-monospace, monospace;
+    font-size: 0.85rem;
+  }
+  .receipt-total strong {
+    font-size: 1.2rem;
+    color: var(--stamp-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 640px) {
+    .receipt-row { grid-template-columns: 44px 1fr auto; row-gap: 8px; }
+    .receipt-badge { grid-column: 3; justify-self: end; }
+    .receipt-price { grid-column: 2 / 3; text-align: left; }
+  }
 
   /* ---------- how it works ---------- */
   .steps {
@@ -417,6 +519,71 @@
   </div>
 </div>
 
+<div class="proof" id="provas">
+  <div class="wrap">
+    <span class="eyebrow">Prova, não promessa</span>
+    <h2 class="section-title">Isso já caiu no grupo</h2>
+    <p class="proof-note">
+      Um recorte dos maiores descontos reais que já passaram por aqui — sem preço "risca e troca",
+      desconto de verdade, comparado com o histórico do produto.
+    </p>
+    <div class="receipt">
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_894230-MLA111390627295_052026-E.webp" />
+        <div><span class="receipt-cat">FIT</span><p class="receipt-title">Creatina 1kg Monohidratada 100% Pura — Soldiers Nutrition</p></div>
+        <div class="receipt-price"><s>R$ 239,90</s><strong>R$ 59,90</strong></div>
+        <span class="receipt-badge">-75%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://i.promobit.com.br/897288433917845443745688097813.jpg" />
+        <div><span class="receipt-cat">BEL</span><p class="receipt-title">Melano CC Loção Hidratante Facial Vitamina C 170ml</p></div>
+        <div class="receipt-price"><s>R$ 145,00</s><strong>R$ 48,69</strong></div>
+        <span class="receipt-badge">-66%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_652845-MLB96222986246_102025-E-calca-masculina-academia-helanca-dry-fit-com-bolsos-treino.webp" />
+        <div><span class="receipt-cat">MOD</span><p class="receipt-title">Calça Masculina Academia Dry Fit com Bolsos</p></div>
+        <div class="receipt-price"><s>R$ 98,00</s><strong>R$ 36,85</strong></div>
+        <span class="receipt-badge">-62%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_948198-MLA81769955450_012025-E.webp" />
+        <div><span class="receipt-cat">BEL</span><p class="receipt-title">Attracione Men Perfume Masculino com Feromônios 25ml</p></div>
+        <div class="receipt-price"><s>R$ 149,00</s><strong>R$ 59,00</strong></div>
+        <span class="receipt-badge">-60%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_856898-MLA87999531628_072025-E.webp" />
+        <div><span class="receipt-cat">BEL</span><p class="receipt-title">Perfume Nautica Voyage EDT Masculino 100ml</p></div>
+        <div class="receipt-price"><s>R$ 219,99</s><strong>R$ 90,47</strong></div>
+        <span class="receipt-badge">-59%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://i.promobit.com.br/823937355117845497716943957295.jpg" />
+        <div><span class="receipt-cat">CAS</span><p class="receipt-title">Refil para Escova de Dente Elétrica — Philips/Colgate</p></div>
+        <div class="receipt-price"><s>R$ 118,47</s><strong>R$ 50,80</strong></div>
+        <span class="receipt-badge">-57%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_946756-MLB109680559848_042026-E.webp" />
+        <div><span class="receipt-cat">ELE</span><p class="receipt-title">Câmera Wifi Babá Eletrônica 360° Visão Noturna</p></div>
+        <div class="receipt-price"><s>R$ 159,90</s><strong>R$ 70,13</strong></div>
+        <span class="receipt-badge">-56%</span>
+      </div>
+      <div class="receipt-row reveal">
+        <img class="receipt-thumb" loading="lazy" alt="" src="https://http2.mlstatic.com/D_Q_NP_2X_784381-MLA111292759492_052026-E.webp" />
+        <div><span class="receipt-cat">ELE</span><p class="receipt-title">Balança Digital de Cozinha Touch 10kg</p></div>
+        <div class="receipt-price"><s>R$ 54,90</s><strong>R$ 23,90</strong></div>
+        <span class="receipt-badge">-56%</span>
+      </div>
+      <div class="receipt-total">
+        <span>Economia somada nesses 8 itens</span>
+        <strong>R$ 745,42</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="steps" id="como-funciona">
   <div class="wrap">
     <span class="eyebrow">Sem enrolação</span>
@@ -446,32 +613,32 @@
     <span class="eyebrow">Seis grupos, um clique</span>
     <h2 class="section-title">Qual é o seu?</h2>
     <div class="cat-grid">
-      <article class="ticket">
+      <article class="ticket reveal">
         <div class="ticket-head"><h3>Eletrônicos</h3><span class="ticket-tag">ELE</span></div>
         <p>Celular, notebook, som, mouse, teclado — tudo que tem fio, tela ou bateria.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-category="eletronicos">ENTRAR NO GRUPO <span class="arrow">→</span></a>
       </article>
-      <article class="ticket">
+      <article class="ticket reveal">
         <div class="ticket-head"><h3>Moda</h3><span class="ticket-tag">MOD</span></div>
         <p>Tênis, roupa, relógio, calçado, acessório — pra vestir bem gastando pouco.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-category="moda">ENTRAR NO GRUPO <span class="arrow">→</span></a>
       </article>
-      <article class="ticket">
+      <article class="ticket reveal">
         <div class="ticket-head"><h3>Casa</h3><span class="ticket-tag">CAS</span></div>
         <p>Cozinha, decoração, eletrodoméstico, ferramenta — pra casa render mais.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-category="casa">ENTRAR NO GRUPO <span class="arrow">→</span></a>
       </article>
-      <article class="ticket">
+      <article class="ticket reveal">
         <div class="ticket-head"><h3>Beleza</h3><span class="ticket-tag">BEL</span></div>
         <p>Perfume, skincare, maquiagem — os achadinhos que sempre somem rápido.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-category="beleza">ENTRAR NO GRUPO <span class="arrow">→</span></a>
       </article>
-      <article class="ticket">
+      <article class="ticket reveal">
         <div class="ticket-head"><h3>Fitness</h3><span class="ticket-tag">FIT</span></div>
         <p>Whey, creatina, suplemento, roupa de treino — pra academia sair mais barata.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-category="fitness">ENTRAR NO GRUPO <span class="arrow">→</span></a>
       </article>
-      <article class="ticket geral">
+      <article class="ticket geral reveal">
         <div class="ticket-head"><h3>Geral</h3><span class="ticket-tag">GER</span></div>
         <p>Não coube em nenhuma categoria acima, mas ainda é uma baita promoção.</p>
         <a class="ticket-cta" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-category="geral">ENTRAR NO GRUPO <span class="arrow">→</span></a>
@@ -508,3 +675,19 @@
     </p>
   </div>
 </footer>
+
+<script>
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in-view'));
+  }
+</script>
