@@ -86,7 +86,7 @@
 
   /* ---------- masthead ---------- */
   .masthead {
-    padding: clamp(28px, 5vw, 40px) 0 clamp(48px, 8vw, 80px);
+    padding: clamp(18px, 3vw, 26px) 0 clamp(24px, 4vw, 34px);
     border-bottom: 3px solid var(--page-ink);
     position: relative;
   }
@@ -95,7 +95,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 16px;
-    margin-bottom: clamp(28px, 6vw, 56px);
+    margin-bottom: clamp(14px, 3vw, 22px);
   }
   .brandmark {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
@@ -141,8 +141,8 @@
     font-family: 'UbuntuStamp', 'UbuntuDisplay', sans-serif;
     font-weight: 800;
     text-transform: uppercase;
-    font-size: clamp(3rem, 11vw, 6.4rem);
-    line-height: 0.86;
+    font-size: clamp(1.7rem, 5.6vw, 3.2rem);
+    line-height: 0.9;
     letter-spacing: -0.01em;
     margin: 0;
     color: var(--stamp-bright);
@@ -153,9 +153,9 @@
   }
   .lede {
     max-width: 62ch;
-    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     color: var(--page-ink-soft);
-    margin: clamp(20px, 4vw, 30px) 0 clamp(26px, 5vw, 34px);
+    margin: clamp(10px, 2vw, 16px) 0 clamp(14px, 3vw, 20px);
     text-wrap: balance;
   }
   .lede strong { color: var(--page-ink); font-weight: 700; }
@@ -310,13 +310,12 @@
     text-wrap: balance;
   }
 
-  /* ---------- categories ---------- */
-  .categories { padding: clamp(44px, 7vw, 76px) 0; }
+  /* ---------- grupos — o botão é a estrela, cabe tudo sem rolar ---------- */
   .cat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: clamp(18px, 3vw, 26px);
-    margin-top: clamp(28px, 4vw, 40px);
+    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+    gap: clamp(10px, 2vw, 16px);
+    margin-top: clamp(18px, 3vw, 26px);
   }
   .ticket {
     position: relative;
@@ -324,11 +323,15 @@
     color: var(--card-ink);
     border: 2px solid var(--card-ink);
     border-radius: 4px;
-    padding: 22px 22px 20px;
+    padding: 16px 18px;
+    min-height: 84px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 16px 32px -12px var(--card-shadow), 0 3px 10px rgba(0, 0, 0, 0.35);
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    box-shadow: 0 12px 24px -10px var(--card-shadow), 0 3px 8px rgba(0, 0, 0, 0.32);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     -webkit-mask-image:
       radial-gradient(circle at 8px 8px, transparent 8px, black 8.5px),
       radial-gradient(circle at calc(100% - 8px) 8px, transparent 8px, black 8.5px),
@@ -346,46 +349,33 @@
     mask-repeat: no-repeat;
     mask-position: top left, top right, bottom left, bottom right;
   }
-  .ticket::after {
-    content: '';
-    position: absolute;
-    left: 14px; right: 14px; top: 50%;
-    border-top: 2px dashed var(--card-line);
+  .ticket:hover, .ticket:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 30px -10px var(--card-shadow), 0 4px 10px rgba(0, 0, 0, 0.38);
   }
-  .ticket-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .ticket:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
   .ticket-tag {
     font-family: 'UbuntuTicket', ui-monospace, monospace;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     color: var(--card-ink-soft);
   }
   .ticket h3 {
     font-family: 'UbuntuDisplay', sans-serif;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin: 0;
-  }
-  .ticket p {
-    margin: 0;
-    color: var(--card-ink-soft);
-    font-size: 0.95rem;
-    padding-top: 14px;
-  }
-  .ticket-cta {
-    margin-top: auto;
-    padding-top: 6px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-family: 'UbuntuTicket', ui-monospace, monospace;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-decoration: none;
-    color: var(--jade-deep);
+    justify-content: space-between;
+    gap: 6px;
   }
-  .ticket-cta:hover { color: var(--jade-fill); }
-  .ticket-cta .arrow { transition: transform 0.15s ease; }
-  .ticket-cta:hover .arrow { transform: translateX(4px); }
-  .ticket-cta:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+  .ticket h3 .arrow {
+    font-family: 'UbuntuTicket', ui-monospace, monospace;
+    font-size: 0.95rem;
+    color: var(--jade-deep);
+    transition: transform 0.15s ease;
+  }
+  .ticket:hover h3 .arrow, .ticket:focus-visible h3 .arrow { transform: translateX(4px); }
   .ticket.geral { background: var(--card-alt); }
 
   /* ---------- transparency ---------- */
@@ -398,12 +388,6 @@
     max-width: 68ch;
     color: var(--page-ink-soft);
     font-size: 1rem;
-  }
-  .store-list {
-    font-family: 'UbuntuTicket', ui-monospace, monospace;
-    font-size: 0.82rem;
-    color: var(--page-ink-soft);
-    letter-spacing: 0.02em;
   }
 
   /* ---------- footer / receipt ---------- */
@@ -448,58 +432,41 @@
   }
 </style>
 
-<div class="masthead">
+<div class="masthead" id="grupos">
   <div class="wrap">
     <div class="masthead-top">
       <span class="brandmark">Alerta de oferta · tempo real</span>
       <div class="ticket-no">Nº <b>0001</b><br />via WhatsApp</div>
     </div>
     <div class="stamp-wrap">
-      <h1>Corre<br />que acaba</h1>
+      <h1>Corre que acaba</h1>
     </div>
-    <p class="lede">
-      A gente garimpa desconto de verdade em <strong>Mercado Livre, Amazon, Kabum, C&amp;A</strong> e outras
-      lojas parceiras, filtra o que presta e manda direto pro seu WhatsApp — várias vezes por dia,
-      sem cadastro e sem custar nada pra entrar. Escolhe seu grupo logo abaixo — um toque e já entra.
-    </p>
-  </div>
-</div>
-
-<div class="categories" id="grupos">
-  <div class="wrap">
-    <span class="eyebrow">Seis grupos, um clique</span>
-    <h2 class="section-title">Qual é o seu?</h2>
+    <p class="lede">Ofertas boas, direto no seu WhatsApp — grátis, sem cadastro. Toca no seu grupo:</p>
     <div class="cat-grid">
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Eletrônicos</h3><span class="ticket-tag">ELE</span></div>
-        <p>Celular, notebook, som, mouse, teclado — tudo que tem fio, tela ou bateria.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-category="eletronicos">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Moda</h3><span class="ticket-tag">MOD</span></div>
-        <p>Tênis, roupa, relógio, calçado, acessório — pra vestir bem gastando pouco.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-category="moda">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Casa</h3><span class="ticket-tag">CAS</span></div>
-        <p>Cozinha, decoração, eletrodoméstico, ferramenta — pra casa render mais.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-category="casa">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Beleza</h3><span class="ticket-tag">BEL</span></div>
-        <p>Perfume, skincare, maquiagem — os achadinhos que sempre somem rápido.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-category="beleza">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket reveal">
-        <div class="ticket-head"><h3>Fitness</h3><span class="ticket-tag">FIT</span></div>
-        <p>Whey, creatina, suplemento, roupa de treino — pra academia sair mais barata.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-category="fitness">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
-      <article class="ticket geral reveal">
-        <div class="ticket-head"><h3>Geral</h3><span class="ticket-tag">GER</span></div>
-        <p>Não coube em nenhuma categoria acima, mas ainda é uma baita promoção.</p>
-        <a class="ticket-cta" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-category="geral">ENTRAR NO GRUPO <span class="arrow">→</span></a>
-      </article>
+      <a class="ticket reveal" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
+        <span class="ticket-tag">ELE</span>
+        <h3>Eletrônicos <span class="arrow">→</span></h3>
+      </a>
+      <a class="ticket reveal" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
+        <span class="ticket-tag">MOD</span>
+        <h3>Moda <span class="arrow">→</span></h3>
+      </a>
+      <a class="ticket reveal" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
+        <span class="ticket-tag">CAS</span>
+        <h3>Casa <span class="arrow">→</span></h3>
+      </a>
+      <a class="ticket reveal" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
+        <span class="ticket-tag">BEL</span>
+        <h3>Beleza <span class="arrow">→</span></h3>
+      </a>
+      <a class="ticket reveal" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
+        <span class="ticket-tag">FIT</span>
+        <h3>Fitness <span class="arrow">→</span></h3>
+      </a>
+      <a class="ticket geral reveal" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
+        <span class="ticket-tag">GER</span>
+        <h3>Geral <span class="arrow">→</span></h3>
+      </a>
     </div>
   </div>
 </div>
@@ -596,14 +563,13 @@
 <div class="transparency">
   <div class="wrap">
     <span class="eyebrow">Sem letra miúda escondida</span>
-    <h2 class="section-title">De onde vem a oferta</h2>
+    <h2 class="section-title">Desconto de verdade</h2>
     <p>
       Cada promoção passa por uma conferência antes de ir pro grupo: comparamos com o preço
       histórico do produto pra não postar "promoção" que é preço de sempre disfarçado. Alguns
       links são de afiliado — se você comprar por eles, a loja paga uma comissão pra gente,
       e isso não muda nadinha no que você paga.
     </p>
-    <p class="store-list">Mercado Livre · Amazon · Kabum · C&amp;A · e outras lojas parceiras</p>
   </div>
 </div>
 
@@ -615,9 +581,8 @@
       <span>6 grupos · 100% grátis pra entrar</span>
     </div>
     <p class="disclaimer">
-      Não somos Mercado Livre, Amazon, Kabum, C&amp;A nem representamos oficialmente nenhuma
-      dessas lojas — apenas curamos e compartilhamos ofertas públicas delas e de outras parceiras,
-      via link de afiliado.
+      Não representamos oficialmente nenhuma loja — apenas curamos e compartilhamos ofertas
+      públicas, via link de afiliado.
     </p>
   </div>
 </footer>
