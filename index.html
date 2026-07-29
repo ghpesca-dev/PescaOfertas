@@ -1,128 +1,134 @@
 <title>Pesca Ofertas — entre no seu grupo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0b0d10;
-    --ink-soft: #9aa0ac;
-    --paper: #eef4ee;
-    --paper-alt: #dcebf7;
-    --paper-ink: #10151a;
-    --paper-ink-soft: #4c5560;
-    --stamp: #ff4a1c;
-    --stamp-bright: #ff7a4d;
+    --deep: #071b23;
+    --deep2: #0d2e39;
+    --foam: #eef7f2;
+    --foam-dim: #e2efe7;
+    --line: rgba(7, 27, 35, 0.12);
+    --ink: #071b23;
+    --ink-soft: rgba(7, 27, 35, 0.6);
+    --fog: rgba(238, 247, 242, 0.68);
+    --catch: #ff5a1f;
+    --catch-bright: #ff8548;
   }
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: var(--ink);
-    color: var(--ink-soft);
+    background: var(--deep);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
   body {
     min-height: 100dvh;
-    background:
-      radial-gradient(680px 380px at 50% -6%, color-mix(in srgb, var(--stamp) 22%, transparent), transparent 72%),
-      var(--ink);
+    background: radial-gradient(120% 60% at 50% 0%, var(--deep2), var(--deep) 65%);
   }
-  a { -webkit-tap-highlight-color: transparent; }
+  a { -webkit-tap-highlight-color: transparent; color: inherit; }
   .wrap {
     min-height: 100dvh;
-    max-width: 520px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 0 18px;
   }
   header {
     text-align: center;
-    padding: max(26px, env(safe-area-inset-top)) 8px 18px;
+    padding: max(22px, env(safe-area-inset-top)) 20px 6px;
+  }
+  .ticket-no {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border: 1px solid rgba(238, 247, 242, 0.25);
+    border-radius: 999px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--fog);
   }
   h1 {
-    margin: 0 0 8px;
-    font-family: 'Archivo Black', 'Inter', sans-serif;
-    font-size: clamp(1.7rem, 8vw, 2.2rem);
+    margin: 0;
+    font-family: 'Bebas Neue', 'Inter', sans-serif;
     font-weight: 400;
-    letter-spacing: -0.01em;
+    font-size: clamp(2.6rem, 13vw, 3.4rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
     color: #fff;
     text-wrap: balance;
   }
-  h1 span { color: var(--stamp); }
+  h1 em {
+    font-style: normal;
+    color: var(--catch);
+  }
   .lede {
-    margin: 0 auto;
+    margin: 10px auto 0;
     max-width: 300px;
-    color: var(--ink-soft);
-    font-size: 0.94rem;
+    color: var(--fog);
+    font-size: 0.92rem;
     font-weight: 500;
     line-height: 1.5;
   }
-  .groups {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 4vh, 26px);
-  }
-  .group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: var(--paper);
-    color: var(--paper-ink);
-    text-decoration: none;
-    border-radius: 4px;
-    padding: 24px 22px;
-    box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.6);
-    -webkit-mask-image:
-      radial-gradient(circle at 9px 9px, transparent 9px, black 9.5px),
-      radial-gradient(circle at calc(100% - 9px) 9px, transparent 9px, black 9.5px),
-      radial-gradient(circle at 9px calc(100% - 9px), transparent 9px, black 9.5px),
-      radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), transparent 9px, black 9.5px);
-    -webkit-mask-size: 51% 51%;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: top left, top right, bottom left, bottom right;
-    mask-image:
-      radial-gradient(circle at 9px 9px, transparent 9px, black 9.5px),
-      radial-gradient(circle at calc(100% - 9px) 9px, transparent 9px, black 9.5px),
-      radial-gradient(circle at 9px calc(100% - 9px), transparent 9px, black 9.5px),
-      radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), transparent 9px, black 9.5px);
-    mask-size: 51% 51%;
-    mask-repeat: no-repeat;
-    mask-position: top left, top right, bottom left, bottom right;
-    transition: transform 0.12s ease;
-  }
-  .group:active { transform: scale(0.98); }
-  .group.geral { background: var(--paper-alt); }
-  .icon {
+  .wave {
+    display: block;
+    width: 100%;
+    height: 22px;
+    margin-top: 16px;
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(16, 21, 26, 0.06);
-    font-size: 1.6rem;
   }
-  .text {
+  .board {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    background: var(--foam);
+  }
+  .row {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 6px 18px;
+    min-height: 64px;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .board a.row:nth-child(even) { background: var(--foam-dim); }
+  .row:last-child { border-bottom: none; }
+  .row:active { background: color-mix(in srgb, var(--catch) 10%, var(--foam)); }
+  .gate {
+    flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--catch);
+    width: 26px;
+  }
+  .icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    width: 30px;
+    text-align: center;
+  }
+  .text {
+    flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
   .label {
-    font-weight: 800;
-    font-size: clamp(1.15rem, 5vw, 1.4rem);
-    letter-spacing: -0.01em;
+    font-family: 'Bebas Neue', 'Inter', sans-serif;
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
   }
   .sub {
+    font-size: 0.82rem;
     font-weight: 500;
-    font-size: 0.86rem;
-    color: var(--paper-ink-soft);
+    color: var(--ink-soft);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -132,38 +138,46 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: var(--stamp);
+    background: var(--catch);
     color: #fff;
     font-weight: 700;
+    font-size: 1.1rem;
+    transition: background 0.12s ease;
   }
   @media (hover: hover) {
-    .group:hover .go { background: var(--stamp-bright); }
+    .row:hover .go { background: var(--catch-bright); }
   }
   footer {
     text-align: center;
-    padding: 28px 8px max(20px, env(safe-area-inset-bottom));
+    padding: 16px 20px max(16px, env(safe-area-inset-bottom));
+    background: var(--foam);
   }
   .disclaimer {
     margin: 0 auto;
     max-width: 340px;
     color: var(--ink-soft);
-    opacity: 0.75;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     line-height: 1.5;
   }
 </style>
 
 <div class="wrap">
   <header>
-    <h1>Pesca <span>Ofertas</span></h1>
-    <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro. Escolhe seu grupo:</p>
+    <span class="ticket-no">Nº 0001 · VIA WHATSAPP</span>
+    <h1>Pesca <em>Ofertas</em></h1>
+    <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro.</p>
   </header>
 
-  <div class="groups">
-    <a class="group" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
+  <svg class="wave" viewBox="0 0 400 22" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 14 Q 25 4 50 14 T 100 14 T 150 14 T 200 14 T 250 14 T 300 14 T 350 14 T 400 14 V22 H0 Z" fill="#eef7f2"></path>
+  </svg>
+
+  <div class="board">
+    <a class="row" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
+      <span class="gate">01</span>
       <span class="icon">💻</span>
       <span class="text">
         <span class="label">Eletrônicos</span>
@@ -171,7 +185,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
+      <span class="gate">02</span>
       <span class="icon">👕</span>
       <span class="text">
         <span class="label">Moda</span>
@@ -179,7 +194,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
+      <span class="gate">03</span>
       <span class="icon">🏠</span>
       <span class="text">
         <span class="label">Casa</span>
@@ -187,7 +203,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
+      <span class="gate">04</span>
       <span class="icon">💄</span>
       <span class="text">
         <span class="label">Beleza</span>
@@ -195,7 +212,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
+      <span class="gate">05</span>
       <span class="icon">🏋️</span>
       <span class="text">
         <span class="label">Fitness</span>
@@ -203,7 +221,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener">
+      <span class="gate">06</span>
       <span class="icon">🐾</span>
       <span class="text">
         <span class="label">Pets</span>
@@ -211,7 +230,8 @@
       </span>
       <span class="go">→</span>
     </a>
-    <a class="group geral" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
+    <a class="row" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
+      <span class="gate">07</span>
       <span class="icon">🛍️</span>
       <span class="text">
         <span class="label">Geral</span>
