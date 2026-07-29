@@ -7,6 +7,7 @@
     --card: #eef7f4;
     --card-alt: #dbeeff;
     --card-ink: #10151a;
+    --card-line: rgba(16, 21, 26, 0.1);
     --stamp-fill: #ff4a1c;
     --stamp-bright: #ff7a4d;
   }
@@ -14,6 +15,7 @@
   html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
     background: var(--page);
     color: var(--page-ink);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -22,28 +24,28 @@
   body {
     min-height: 100dvh;
     background:
-      radial-gradient(560px 360px at 50% 0%, color-mix(in srgb, var(--stamp-fill) 20%, transparent), transparent 70%),
+      radial-gradient(560px 320px at 50% 0%, color-mix(in srgb, var(--stamp-fill) 20%, transparent), transparent 70%),
       var(--page);
   }
   .wrap {
     min-height: 100dvh;
-    max-width: 480px;
+    max-width: 560px;
     margin: 0 auto;
-    padding: max(28px, env(safe-area-inset-top)) 22px max(28px, env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 36px;
   }
-  header { text-align: center; }
+  header {
+    text-align: center;
+    padding: max(20px, env(safe-area-inset-top)) 16px 14px;
+  }
   .badge {
-    font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 1;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
   }
   h1 {
-    margin: 0 0 12px;
-    font-size: clamp(2rem, 9vw, 2.6rem);
+    margin: 0 0 6px;
+    font-size: clamp(1.6rem, 7vw, 2rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--page-ink);
@@ -51,58 +53,62 @@
   h1 span { color: var(--stamp-fill); }
   .lede {
     margin: 0 auto;
-    max-width: 320px;
+    max-width: 300px;
     color: var(--page-ink-soft);
-    font-size: 1.02rem;
-    line-height: 1.55;
+    font-size: 0.92rem;
+    line-height: 1.45;
   }
   .groups {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 14px;
   }
   .group {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
     background: var(--card);
     color: var(--card-ink);
     text-decoration: none;
-    border-radius: 16px;
-    padding: 20px 22px;
-    min-height: 68px;
-    font-weight: 700;
-    font-size: 1.15rem;
-    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.55);
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    padding: 4px 24px;
+    border-bottom: 1px solid var(--card-line);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 6.5vw, 1.8rem);
+    letter-spacing: -0.01em;
+    transition: filter 0.12s ease;
   }
-  .group:active { transform: scale(0.97); }
+  .groups .group:last-child { border-bottom: none; }
+  .group:active { filter: brightness(0.94); }
   .group.geral { background: var(--card-alt); }
   .go {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: clamp(40px, 9vw, 52px);
+    height: clamp(40px, 9vw, 52px);
     border-radius: 999px;
     background: var(--stamp-fill);
     color: #fff;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
   }
   @media (hover: hover) {
-    .group:hover { box-shadow: 0 12px 26px -8px rgba(0, 0, 0, 0.65); }
+    .group:hover { filter: brightness(0.97); }
     .group:hover .go { background: var(--stamp-bright); }
   }
-  footer { text-align: center; }
+  footer {
+    text-align: center;
+    padding: 14px 16px max(14px, env(safe-area-inset-bottom));
+  }
   .disclaimer {
     margin: 0 auto;
     max-width: 340px;
     color: var(--page-ink-soft);
-    font-size: 0.8rem;
-    line-height: 1.55;
+    font-size: 0.74rem;
+    line-height: 1.5;
   }
 </style>
 
