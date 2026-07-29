@@ -8,11 +8,15 @@
     --deep: #071b23;
     --deep2: #0d2e39;
     --card: #ffffff;
+    --card-alt: #eaf3fb;
     --ink: #071b23;
     --ink-soft: rgba(7, 27, 35, 0.6);
     --fog: rgba(238, 247, 242, 0.68);
     --catch: #ff5a1f;
     --catch-bright: #ff8548;
+    --label-size: 1.65rem;
+    --icon-size: 2.15rem;
+    --sub-size: 1.09rem;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -33,20 +37,19 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
   header {
-    padding: max(28px, env(safe-area-inset-top)) 20px 8px;
+    text-align: center;
+    padding: max(14px, env(safe-area-inset-top)) 20px 6px;
   }
   .ticket-no {
     display: inline-block;
-    margin-bottom: 12px;
-    padding: 4px 12px;
+    margin-bottom: 6px;
+    padding: 3px 10px;
     border: 1px solid rgba(238, 247, 242, 0.25);
     border-radius: 999px;
     font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
     color: var(--fog);
   }
@@ -54,91 +57,90 @@
     margin: 0;
     font-family: 'Bebas Neue', 'Inter', sans-serif;
     font-weight: 400;
-    font-size: clamp(2.8rem, 14vw, 3.6rem);
-    line-height: 0.95;
+    font-size: clamp(1.7rem, 8vw, 2.1rem);
+    line-height: 1;
     letter-spacing: 0.01em;
     color: #fff;
     text-wrap: balance;
   }
-  h1 em {
-    font-style: normal;
-    color: var(--catch);
-  }
+  h1 em { font-style: normal; color: var(--catch); }
   .lede {
-    margin: 12px auto 0;
+    margin: 6px auto 0;
     max-width: 320px;
     color: var(--fog);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.4;
   }
   .board {
+    flex: 1;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    padding: 30px 5px max(30px, env(safe-area-inset-bottom));
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 5px;
   }
   .btn {
     width: 100%;
     max-width: 540px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     background: var(--card);
     color: var(--ink);
     text-decoration: none;
-    border-radius: 28px;
-    padding: 36px 28px;
-    box-shadow: 0 18px 34px -14px rgba(0, 0, 0, 0.55), 0 3px 8px rgba(0, 0, 0, 0.18);
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    border-radius: 16px;
+    padding: 8px 16px;
+    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.12);
   }
-  .btn:active {
-    transform: scale(0.96);
-    box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.5);
+  .btn.alt { background: var(--card-alt); }
+  .btn:active { transform: scale(0.98); }
+  .icon { flex-shrink: 0; font-size: var(--icon-size); width: 1.3em; text-align: center; }
+  .text {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
-  .icon { font-size: 5.4rem; line-height: 1; }
   .label {
     font-family: 'Bebas Neue', 'Inter', sans-serif;
-    font-size: clamp(2.8rem, 14vw, 3.8rem);
+    font-size: var(--label-size);
     letter-spacing: 0.02em;
-    line-height: 1;
+    line-height: 1.05;
   }
   .sub {
-    font-size: 1.2rem;
+    font-size: var(--sub-size);
     font-weight: 500;
     color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .cta {
-    margin-top: 14px;
+  .go {
+    flex-shrink: 0;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
     background: var(--catch);
     color: #fff;
     font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 15px 30px;
-    border-radius: 999px;
+    font-size: calc(var(--label-size) * 0.55);
   }
-  @media (hover: hover) {
-    .btn:hover { box-shadow: 0 22px 40px -14px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.2); }
-    .btn:hover .cta { background: var(--catch-bright); }
-  }
-  footer {
-    padding: 0 20px max(24px, env(safe-area-inset-bottom));
-  }
+  footer { text-align: center; padding: 0 20px max(10px, env(safe-area-inset-bottom)); }
   .disclaimer {
     margin: 0 auto;
     max-width: 340px;
     color: var(--fog);
-    opacity: 0.75;
-    font-size: 0.74rem;
-    line-height: 1.5;
+    opacity: 0.7;
+    font-size: 0.66rem;
+    line-height: 1.4;
   }
 </style>
 
@@ -146,51 +148,44 @@
   <header>
     <span class="ticket-no">Nº 0001 · VIA WHATSAPP</span>
     <h1>Pesca <em>Ofertas</em></h1>
-    <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro. Toca no seu grupo:</p>
+    <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro.</p>
   </header>
 
   <div class="board">
     <a class="btn" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
       <span class="icon">🛍️</span>
-      <span class="label">Geral</span>
-      <span class="sub">Um pouco de cada categoria</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Geral</span><span class="sub">Um pouco de cada categoria</span></span>
+      <span class="go">→</span>
     </a>
-    <a class="btn" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
+    <a class="btn alt" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
       <span class="icon">🎮</span>
-      <span class="label">Gamer e Eletrônicos</span>
-      <span class="sub">Peças pra PC, notebook, celular</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Gamer e Eletrônicos</span><span class="sub">Peças pra PC, notebook, celular</span></span>
+      <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
       <span class="icon">👕</span>
-      <span class="label">Moda</span>
-      <span class="sub">Roupa, calçado, acessórios</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Moda</span><span class="sub">Roupa, calçado, acessórios</span></span>
+      <span class="go">→</span>
     </a>
-    <a class="btn" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
+    <a class="btn alt" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
       <span class="icon">🏠</span>
-      <span class="label">Casa</span>
-      <span class="sub">Cozinha, decoração, eletro</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Casa</span><span class="sub">Cozinha, decoração, eletro</span></span>
+      <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
       <span class="icon">💄</span>
-      <span class="label">Beleza</span>
-      <span class="sub">Perfume, skincare, maquiagem</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Beleza</span><span class="sub">Perfume, skincare, maquiagem</span></span>
+      <span class="go">→</span>
     </a>
-    <a class="btn" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
+    <a class="btn alt" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
       <span class="icon">🏋️</span>
-      <span class="label">Fitness</span>
-      <span class="sub">Suplemento, roupa de treino</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Fitness</span><span class="sub">Suplemento, roupa de treino</span></span>
+      <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener">
       <span class="icon">🐾</span>
-      <span class="label">Pets</span>
-      <span class="sub">Ração, brinquedo, acessórios</span>
-      <span class="cta">Entrar →</span>
+      <span class="text"><span class="label">Pets</span><span class="sub">Ração, brinquedo, acessórios</span></span>
+      <span class="go">→</span>
     </a>
   </div>
 
