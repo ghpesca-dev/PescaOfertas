@@ -1,14 +1,16 @@
 <title>Pesca Ofertas — entre no seu grupo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --page: #0c0d11;
-    --page-ink: #eef0f6;
-    --page-ink-soft: #9195a3;
-    --card: #eef7f4;
-    --card-alt: #dbeeff;
-    --card-ink: #10151a;
-    --card-line: rgba(16, 21, 26, 0.1);
-    --stamp-fill: #ff4a1c;
+    --ink: #0b0d10;
+    --ink-soft: #9aa0ac;
+    --paper: #eef4ee;
+    --paper-alt: #dcebf7;
+    --paper-ink: #10151a;
+    --paper-ink-soft: #4c5560;
+    --stamp: #ff4a1c;
     --stamp-bright: #ff7a4d;
   }
   * { box-sizing: border-box; }
@@ -16,130 +18,206 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    background: var(--page);
-    color: var(--page-ink);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--ink);
+    color: var(--ink-soft);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
   body {
     min-height: 100dvh;
     background:
-      radial-gradient(560px 320px at 50% 0%, color-mix(in srgb, var(--stamp-fill) 20%, transparent), transparent 70%),
-      var(--page);
+      radial-gradient(680px 380px at 50% -6%, color-mix(in srgb, var(--stamp) 22%, transparent), transparent 72%),
+      var(--ink);
   }
+  a { -webkit-tap-highlight-color: transparent; }
   .wrap {
     min-height: 100dvh;
-    max-width: 560px;
+    max-width: 520px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    padding: 0 18px;
   }
   header {
     text-align: center;
-    padding: max(20px, env(safe-area-inset-top)) 16px 14px;
-  }
-  .badge {
-    font-size: 1.7rem;
-    line-height: 1;
-    margin-bottom: 8px;
+    padding: max(26px, env(safe-area-inset-top)) 8px 18px;
   }
   h1 {
-    margin: 0 0 6px;
-    font-size: clamp(1.6rem, 7vw, 2rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--page-ink);
+    margin: 0 0 8px;
+    font-family: 'Archivo Black', 'Inter', sans-serif;
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-wrap: balance;
   }
-  h1 span { color: var(--stamp-fill); }
+  h1 span { color: var(--stamp); }
   .lede {
     margin: 0 auto;
     max-width: 300px;
-    color: var(--page-ink-soft);
-    font-size: 0.92rem;
-    line-height: 1.45;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
   .groups {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 4vh, 26px);
+  }
+  .group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--paper);
+    color: var(--paper-ink);
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 24px 22px;
+    box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.6);
+    -webkit-mask-image:
+      radial-gradient(circle at 9px 9px, transparent 9px, black 9.5px),
+      radial-gradient(circle at calc(100% - 9px) 9px, transparent 9px, black 9.5px),
+      radial-gradient(circle at 9px calc(100% - 9px), transparent 9px, black 9.5px),
+      radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), transparent 9px, black 9.5px);
+    -webkit-mask-size: 51% 51%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: top left, top right, bottom left, bottom right;
+    mask-image:
+      radial-gradient(circle at 9px 9px, transparent 9px, black 9.5px),
+      radial-gradient(circle at calc(100% - 9px) 9px, transparent 9px, black 9.5px),
+      radial-gradient(circle at 9px calc(100% - 9px), transparent 9px, black 9.5px),
+      radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), transparent 9px, black 9.5px);
+    mask-size: 51% 51%;
+    mask-repeat: no-repeat;
+    mask-position: top left, top right, bottom left, bottom right;
+    transition: transform 0.12s ease;
+  }
+  .group:active { transform: scale(0.98); }
+  .group.geral { background: var(--paper-alt); }
+  .icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(16, 21, 26, 0.06);
+    font-size: 1.6rem;
+  }
+  .text {
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 3px;
+    min-width: 0;
   }
-  .group {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    background: var(--card);
-    color: var(--card-ink);
-    text-decoration: none;
-    padding: 4px 24px;
-    border-bottom: 1px solid var(--card-line);
+  .label {
     font-weight: 800;
-    font-size: clamp(1.3rem, 6.5vw, 1.8rem);
+    font-size: clamp(1.15rem, 5vw, 1.4rem);
     letter-spacing: -0.01em;
-    transition: filter 0.12s ease;
   }
-  .groups .group:last-child { border-bottom: none; }
-  .group:active { filter: brightness(0.94); }
-  .group.geral { background: var(--card-alt); }
+  .sub {
+    font-weight: 500;
+    font-size: 0.86rem;
+    color: var(--paper-ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .go {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(40px, 9vw, 52px);
-    height: clamp(40px, 9vw, 52px);
-    border-radius: 999px;
-    background: var(--stamp-fill);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--stamp);
     color: #fff;
     font-weight: 700;
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
   }
   @media (hover: hover) {
-    .group:hover { filter: brightness(0.97); }
     .group:hover .go { background: var(--stamp-bright); }
   }
   footer {
     text-align: center;
-    padding: 14px 16px max(14px, env(safe-area-inset-bottom));
+    padding: 28px 8px max(20px, env(safe-area-inset-bottom));
   }
   .disclaimer {
     margin: 0 auto;
     max-width: 340px;
-    color: var(--page-ink-soft);
-    font-size: 0.74rem;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    font-size: 0.72rem;
     line-height: 1.5;
   }
 </style>
 
 <div class="wrap">
   <header>
-    <div class="badge">🎣</div>
     <h1>Pesca <span>Ofertas</span></h1>
     <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro. Escolhe seu grupo:</p>
   </header>
 
   <div class="groups">
     <a class="group" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
-      Eletrônicos <span class="go">→</span>
+      <span class="icon">💻</span>
+      <span class="text">
+        <span class="label">Eletrônicos</span>
+        <span class="sub">Notebook, celular, gadgets</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener">
-      Moda <span class="go">→</span>
+      <span class="icon">👕</span>
+      <span class="text">
+        <span class="label">Moda</span>
+        <span class="sub">Roupa, calçado, acessórios</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener">
-      Casa <span class="go">→</span>
+      <span class="icon">🏠</span>
+      <span class="text">
+        <span class="label">Casa</span>
+        <span class="sub">Cozinha, decoração, eletro</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener">
-      Beleza <span class="go">→</span>
+      <span class="icon">💄</span>
+      <span class="text">
+        <span class="label">Beleza</span>
+        <span class="sub">Perfume, skincare, maquiagem</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener">
-      Fitness <span class="go">→</span>
+      <span class="icon">🏋️</span>
+      <span class="text">
+        <span class="label">Fitness</span>
+        <span class="sub">Suplemento, roupa de treino</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener">
-      Pets <span class="go">→</span>
+      <span class="icon">🐾</span>
+      <span class="text">
+        <span class="label">Pets</span>
+        <span class="sub">Ração, brinquedo, acessórios</span>
+      </span>
+      <span class="go">→</span>
     </a>
     <a class="group geral" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener">
-      Geral <span class="go">→</span>
+      <span class="icon">🛍️</span>
+      <span class="text">
+        <span class="label">Geral</span>
+        <span class="sub">Um pouco de cada categoria</span>
+      </span>
+      <span class="go">→</span>
     </a>
   </div>
 
