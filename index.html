@@ -123,6 +123,15 @@
     font-weight: 700;
     font-size: calc(var(--label-size) * 0.55);
   }
+  .mascot {
+    display: block;
+    width: min(48vw, 220px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 4px auto 0;
+    border-radius: 50%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+  }
   footer { text-align: center; padding: 0 20px max(10px, env(safe-area-inset-bottom)); }
   .disclaimer {
     margin: 0 auto;
@@ -138,6 +147,7 @@
   <header>
     <h1>Pesca <em>Ofertas</em></h1>
     <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro.</p>
+    <img class="mascot" src="mascote.webp" alt="Mascote Pesca Ofertas mostrando cupom de desconto no celular" width="700" height="700">
   </header>
 
   <div class="board">
