@@ -1,0 +1,283 @@
+<title>Pesca Ofertas — Ofertas Testadas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #071b23;
+    --deep2: #0d2e39;
+    --card: #ffffff;
+    --card-alt: #eaf3fb;
+    --ink: #071b23;
+    --ink-soft: rgba(7, 27, 35, 0.6);
+    --fog: rgba(238, 247, 242, 0.68);
+    --catch: #ff5a1f;
+    --catch-bright: #ff8548;
+    --brand-blue: #0568bc;
+    --label-size: 1.2rem;
+    --icon-size: 2.15rem;
+    --sub-size: 0.86rem;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--deep);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    min-height: 100dvh;
+    background: radial-gradient(120% 55% at 50% 0%, var(--deep2), var(--deep) 65%);
+  }
+  a { -webkit-tap-highlight-color: transparent; color: inherit; }
+  .wrap {
+    min-height: 100dvh;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    text-align: center;
+    padding: max(20px, env(safe-area-inset-top)) 20px 6px;
+  }
+  .crumb { margin: 0 0 8px; }
+  .crumb a {
+    color: var(--fog);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0.75;
+  }
+  .crumb a:hover { opacity: 1; }
+  h1 {
+    margin: 0;
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--brand-blue); }
+  .lede {
+    margin: 6px auto 0;
+    max-width: 320px;
+    color: var(--fog);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .board {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 5px;
+  }
+  .btn {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.12);
+  }
+  .btn.alt { background: var(--card-alt); }
+  .btn:active { transform: scale(0.98); }
+  .icon { flex-shrink: 0; font-size: var(--icon-size); width: 1.3em; text-align: center; }
+  .icon-photo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(7, 27, 35, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .icon-photo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+  .rank {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--catch);
+    color: #fff;
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px #fff;
+  }
+  .text {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .label {
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--label-size);
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+  .sub {
+    font-size: var(--sub-size);
+    font-weight: 500;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .go {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: var(--catch);
+    color: #fff;
+    font-weight: 700;
+    font-size: calc(var(--label-size) * 0.55);
+  }
+  .divider {
+    text-align: center;
+    color: var(--fog);
+    opacity: 0.55;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 14px 0 2px;
+  }
+  .btn-soon {
+    background: transparent;
+    border: 1.5px dashed rgba(238, 247, 242, 0.18);
+    box-shadow: none;
+  }
+  .btn-soon .label { color: var(--fog); }
+  .btn-soon .sub { color: rgba(238, 247, 242, 0.4); }
+  .soon-chip {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--fog);
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+  .mascot {
+    display: block;
+    width: min(26vw, 120px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 4px auto 0;
+    border-radius: 50%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+  }
+  footer { text-align: center; padding: 6px 20px max(10px, env(safe-area-inset-bottom)); }
+  .disclaimer {
+    margin: 0 auto 6px;
+    max-width: 340px;
+    color: var(--fog);
+    opacity: 0.7;
+    font-size: 0.66rem;
+    line-height: 1.4;
+  }
+  .disclaimer a { color: var(--fog); opacity: 1; text-decoration: underline; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="crumb"><a href="index.html">&larr; todas as categorias</a></p>
+    <h1>Ofertas <em>Testadas</em></h1>
+    <p class="lede">Os produtos que a gente realmente testa e compara nos vídeos do canal.</p>
+    <img class="mascot" src="mascote.webp" alt="Mascote Pesca Ofertas mostrando cupom de desconto no celular" width="700" height="700">
+  </header>
+
+  <div class="board">
+    <a class="btn" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener">
+      <span class="icon">🎮</span>
+      <span class="text"><span class="label">Grupo de ofertas</span><span class="sub">Gamer e Eletrônicos</span></span>
+      <span class="go">→</span>
+    </a>
+
+    <p class="divider">Review completo · 5 Mouses Custo-Benefício, agosto/2026</p>
+
+    <a class="btn alt" href="https://link.amazon/B0899LMdA" target="_blank" rel="noopener sponsored">
+      <span class="icon icon-photo"><span class="rank">1</span><img src="mouse-havit.jpg" alt="Havit HV-MS1001"></span>
+      <span class="text"><span class="label">Havit HV-MS1001</span><span class="sub">Preço muito acessível</span></span>
+      <span class="go">→</span>
+    </a>
+    <a class="btn" href="https://link.amazon/B0dzLvn0g" target="_blank" rel="noopener sponsored">
+      <span class="icon icon-photo"><span class="rank">2</span><img src="mouse-g203.jpg" alt="Logitech G203 Prodigy"></span>
+      <span class="text"><span class="label">Logitech G203 Prodigy</span><span class="sub">+42 mil avaliações</span></span>
+      <span class="go">→</span>
+    </a>
+    <a class="btn alt" href="https://link.amazon/B09V6PD2N" target="_blank" rel="noopener sponsored">
+      <span class="icon icon-photo"><span class="rank">3</span><img src="mouse-hyperx.jpg" alt="HyperX Pulsefire Core"></span>
+      <span class="text"><span class="label">HyperX Pulsefire Core</span><span class="sub">Ambidestro, switches duráveis</span></span>
+      <span class="go">→</span>
+    </a>
+    <a class="btn" href="https://link.amazon/B0bkVL35F" target="_blank" rel="noopener sponsored">
+      <span class="icon icon-photo"><span class="rank">4</span><img src="mouse-g305.jpg" alt="Logitech G305"></span>
+      <span class="text"><span class="label">Logitech G305</span><span class="sub">Sem fio, latência de mouse com fio</span></span>
+      <span class="go">→</span>
+    </a>
+    <a class="btn alt" href="https://link.amazon/B02M1Kkp2" target="_blank" rel="noopener sponsored">
+      <span class="icon icon-photo"><span class="rank">5</span><img src="mouse-redragon.jpg" alt="Redragon Cobra Pro"></span>
+      <span class="text"><span class="label">Redragon Cobra Pro</span><span class="sub">Sem fio ou com fio, USB-C</span></span>
+      <span class="go">→</span>
+    </a>
+
+    <p class="divider">Próximas comparações</p>
+
+    <div class="btn btn-soon">
+      <span class="icon">📱</span>
+      <span class="text"><span class="label">5 Melhores tablets</span><span class="sub">Ainda testando</span></span>
+      <span class="soon-chip">Em breve</span>
+    </div>
+    <div class="btn btn-soon alt">
+      <span class="icon">🖥️</span>
+      <span class="text"><span class="label">Placas de vídeo custo-benefício</span><span class="sub">Ainda testando</span></span>
+      <span class="soon-chip">Em breve</span>
+    </div>
+    <div class="btn btn-soon">
+      <span class="icon">🔊</span>
+      <span class="text"><span class="label">Caixas de som até R$200</span><span class="sub">Ainda testando</span></span>
+      <span class="soon-chip">Em breve</span>
+    </div>
+  </div>
+
+  <footer>
+    <p class="disclaimer">
+      Não representamos oficialmente nenhuma loja — apenas curamos e compartilhamos ofertas
+      públicas, via link de afiliado.
+    </p>
+    <p class="disclaimer"><a href="https://youtu.be/VJrs7wjQnrM" target="_blank" rel="noopener">Assistir o vídeo completo com a comparação →</a></p>
+  </footer>
+</div>
