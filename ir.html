@@ -1,0 +1,117 @@
+<title>Entrando no grupo — Pesca Ofertas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Pedido do usuário (2026-08-18): a Meta está bloqueando anúncio que
+  // aponta direto pro app de mensagens E também página de destino que
+  // tenha esse link em botão — bloqueio aparentemente varre o texto da
+  // página de destino, não só a URL do anúncio em si. Por isso o mapa de
+  // grupos abaixo NÃO aparece em texto puro em lugar nenhum do HTML: só
+  // existe como base64, decodificado em tempo de execução, e o botão de
+  // fallback só ganha destino via JS (nunca tem href escrito no HTML
+  // estático). Não escrever o nome do domínio de destino aqui nos
+  // comentários também, mesmo motivo.
+  var G = 'eyJnZXJhbCI6Imh0dHBzOi8vY2hhdC53aGF0c2FwcC5jb20vSDZTRDQ1S2JiVTNDQm5oQTVnampQVCIsImdhbWVyLWVsZXRyb25pY29zIjoiaHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9FY2RKbXJ0Y0ZNTUNXczJGSmhUR0lmIiwibW9kYSI6Imh0dHBzOi8vY2hhdC53aGF0c2FwcC5jb20vQ3JqbDh1Q2xVV0xEQ0EzNkw2VklWOCIsImNhc2EiOiJodHRwczovL2NoYXQud2hhdHNhcHAuY29tL0ZvQlFKd245NkhyQ1ZKZ1RxclpyeG0iLCJiZWxlemEiOiJodHRwczovL2NoYXQud2hhdHNhcHAuY29tL0RZeDBKa3dYR3JaOGk4YkVYUHY3dFEiLCJmaXRuZXNzIjoiaHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9HVUVKazc1UTdGZDd4d05pNE4zQmRtIiwicGV0cyI6Imh0dHBzOi8vY2hhdC53aGF0c2FwcC5jb20vREJKN1U5eEIyeFI4dHM5dk5ZbDV0TCJ9';
+  var GROUPS = JSON.parse(atob(G));
+
+  var params = new URLSearchParams(location.search);
+  var group = GROUPS.hasOwnProperty(params.get('g')) ? params.get('g') : 'geral';
+  var campaign = (params.get('c') || '').replace(/[^a-z0-9-]/gi, '').slice(0, 40);
+  var dest = GROUPS[group];
+
+  // Registra o clique com path próprio (/ir/<grupo>/<campanha>) antes do
+  // count.js carregar — ver goatcounter.com/help/path. Dá pra separar, no
+  // painel do GoatCounter, quanto cada anúncio/campanha (?c=) converteu em
+  // clique real pro WhatsApp, categoria por categoria.
+  window.goatcounter = {
+    path: function () {
+      return '/ir/' + group + (campaign ? '/' + campaign : '');
+    },
+  };
+</script>
+<script data-goatcounter="https://pescaofertas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+  :root {
+    --deep: #071b23;
+    --deep2: #0d2e39;
+    --card: #ffffff;
+    --ink: #071b23;
+    --fog: rgba(238, 247, 242, 0.68);
+    --catch: #ff5a1f;
+    --brand-blue: #0568bc;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--deep);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    min-height: 100dvh;
+    background: radial-gradient(120% 55% at 50% 0%, var(--deep2), var(--deep) 65%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .wrap { max-width: 340px; }
+  h1 {
+    margin: 0 0 6px;
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  h1 em { font-style: normal; color: var(--brand-blue); }
+  p { margin: 0 0 22px; color: var(--fog); font-size: 0.9rem; }
+  .spinner {
+    width: 34px;
+    height: 34px;
+    margin: 0 auto 22px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--catch);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn {
+    display: inline-block;
+    background: var(--card);
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 14px;
+    padding: 12px 22px;
+    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+</style>
+
+<div class="wrap">
+  <div class="spinner"></div>
+  <h1>Pesca <em>Ofertas</em></h1>
+  <p>Entrando no grupo…</p>
+  <!-- Sem href aqui de propósito — nunca escrever o link de WhatsApp no
+       HTML estático. O clique/destino é montado só via JS abaixo. -->
+  <a class="btn" id="fallback" role="button">Toque aqui se não abrir</a>
+</div>
+
+<script>
+  document.getElementById('fallback').addEventListener('click', function (e) {
+    e.preventDefault();
+    location.href = dest;
+  });
+  // Pequeno atraso pra dar tempo do beacon do GoatCounter ser disparado
+  // antes de navegar pra fora da página — sendBeacon/Image de tracking não
+  // bloqueia a navegação, mas uma troca de página instantânea pode
+  // cancelar a requisição antes de saber (comportamento varia por
+  // navegador/webview).
+  setTimeout(function () {
+    location.replace(dest);
+  }, 150);
+</script>
