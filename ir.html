@@ -106,12 +106,10 @@
     e.preventDefault();
     location.href = dest;
   });
-  // Pequeno atraso pra dar tempo do beacon do GoatCounter ser disparado
-  // antes de navegar pra fora da página — sendBeacon/Image de tracking não
-  // bloqueia a navegação, mas uma troca de página instantânea pode
-  // cancelar a requisição antes de saber (comportamento varia por
-  // navegador/webview).
+  // Atraso de 5s (pedido do usuário) antes de navegar pra fora da página —
+  // também garante tempo de sobra pro beacon do GoatCounter disparar antes
+  // da troca de página.
   setTimeout(function () {
     location.replace(dest);
-  }, 150);
+  }, 5000);
 </script>
