@@ -95,7 +95,7 @@
 <div class="wrap">
   <div class="spinner"></div>
   <h1>Pesca <em>Ofertas</em></h1>
-  <p>Entrando no grupo…</p>
+  <p>Entrando no grupo em <span id="count">5</span>…</p>
   <!-- Sem href aqui de propósito — nunca escrever o link de WhatsApp no
        HTML estático. O clique/destino é montado só via JS abaixo. -->
   <a class="btn" id="fallback" role="button">Toque aqui se não abrir</a>
@@ -108,7 +108,15 @@
   });
   // Atraso de 5s (pedido do usuário) antes de navegar pra fora da página —
   // também garante tempo de sobra pro beacon do GoatCounter disparar antes
-  // da troca de página.
+  // da troca de página. Contador visual só de feedback, o redirect real é
+  // sempre pelo setTimeout, não pelo fim do interval.
+  var secondsLeft = 5;
+  var countEl = document.getElementById('count');
+  var countdown = setInterval(function () {
+    secondsLeft -= 1;
+    countEl.textContent = Math.max(secondsLeft, 0);
+    if (secondsLeft <= 0) clearInterval(countdown);
+  }, 1000);
   setTimeout(function () {
     location.replace(dest);
   }, 5000);
