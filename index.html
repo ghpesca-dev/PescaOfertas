@@ -16,12 +16,8 @@
     --catch: #ff5a1f;
     --catch-bright: #ff8548;
     --brand-blue: #0568bc;
-    --wa-green: #3fe07d;
-    --wa-green-2: #27c164;
-    --wa-green-alt: #57e691;
-    --wa-teal: #075e54;
     --label-size: 1.4rem;
-    --icon-size: 2.15rem;
+    --icon-size: 2.6rem;
     --sub-size: 0.92rem;
   }
   * { box-sizing: border-box; }
@@ -84,26 +80,35 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(155deg, var(--wa-green), var(--wa-green-2));
+    background: var(--card);
     color: var(--ink);
     text-decoration: none;
     border-radius: 28px;
     padding: 8px 16px;
-    box-shadow: 0 8px 18px -10px rgba(7, 94, 84, 0.65), 0 2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.12);
+    max-height: 220px;
+    overflow: hidden;
+    transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.45s ease, margin 0.45s ease;
   }
-  .btn.alt { background: linear-gradient(155deg, var(--wa-green-alt), var(--wa-green)); }
+  .btn.alt { background: var(--card-alt); }
   .btn:active { transform: scale(0.98); }
+  .btn.esgotado {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
   .icon {
     flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.3em;
-    height: 2.3em;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(7, 94, 84, 0.25);
-    font-size: calc(var(--icon-size) * 0.62);
+    font-size: var(--icon-size);
+    width: 1.3em;
+    text-align: center;
     line-height: 1;
   }
   .text {
@@ -154,8 +159,8 @@
     width: 2.3em;
     height: 2.3em;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--wa-teal);
+    background: var(--catch);
+    color: #fff;
     font-weight: 700;
     font-size: calc(var(--label-size) * 0.68);
   }
@@ -189,37 +194,37 @@
   <div class="board">
     <a class="btn" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-goatcounter-click="/click/index/geral" data-goatcounter-title="Clique: Geral">
       <span class="icon">🛍️</span>
-      <span class="text"><span class="label">Geral</span><span class="sub">Um pouco de cada categoria</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Geral</span><span class="sub">Um pouco de cada categoria</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-goatcounter-click="/click/index/gamer-eletronicos" data-goatcounter-title="Clique: Gamer e Eletrônicos">
       <span class="icon">🎮</span>
-      <span class="text"><span class="label">Gamer e Eletrônicos</span><span class="sub">Peças pra PC, notebook, celular</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Gamer e Eletrônicos</span><span class="sub">Peças pra PC, notebook, celular</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-goatcounter-click="/click/index/moda" data-goatcounter-title="Clique: Moda">
       <span class="icon">👕</span>
-      <span class="text"><span class="label">Moda</span><span class="sub">Roupa, calçado, acessórios</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Moda</span><span class="sub">Roupa, calçado, acessórios</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-goatcounter-click="/click/index/casa" data-goatcounter-title="Clique: Casa">
       <span class="icon">🏠</span>
-      <span class="text"><span class="label">Casa</span><span class="sub">Cozinha, decoração, eletro</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Casa</span><span class="sub">Cozinha, decoração, eletro</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-goatcounter-click="/click/index/beleza" data-goatcounter-title="Clique: Beleza">
       <span class="icon">💄</span>
-      <span class="text"><span class="label">Beleza</span><span class="sub">Perfume, skincare, maquiagem</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Beleza</span><span class="sub">Perfume, skincare, maquiagem</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-goatcounter-click="/click/index/fitness" data-goatcounter-title="Clique: Fitness">
       <span class="icon">🏋️</span>
-      <span class="text"><span class="label">Fitness</span><span class="sub">Suplemento, roupa de treino</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Fitness</span><span class="sub">Suplemento, roupa de treino</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener" data-goatcounter-click="/click/index/pets" data-goatcounter-title="Clique: Pets">
       <span class="icon">🐾</span>
-      <span class="text"><span class="label">Pets</span><span class="sub">Ração, brinquedo, acessórios</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
+      <span class="text"><span class="label">Pets</span><span class="sub">Ração, brinquedo, acessórios</span><span class="vagas">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
   </div>
@@ -236,27 +241,32 @@
   // Contador de vagas: só visual, sem lógica real por trás.
   // Cada botão sorteia seu número inicial (8 a 15) no carregamento da página e,
   // de forma independente dos outros, perde 1 vaga em um intervalo aleatório
-  // entre 2 e 10 segundos, até chegar no piso mínimo.
+  // entre 2 e 10 segundos. Ao chegar em 0, o botão inteiro é escondido.
   (function () {
     function randInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     function render(el) {
       var n = parseInt(el.dataset.count, 10);
-      var min = parseInt(el.dataset.min, 10);
-      el.classList.toggle('low', n <= min + 2);
+      el.classList.toggle('low', n <= 2);
       el.innerHTML = '🔥 <span class="tick">' + n + '</span> vagas restantes';
     }
     function scheduleNext(el) {
       var delay = randInt(2000, 10000);
       setTimeout(function () {
-        var n = parseInt(el.dataset.count, 10);
-        var min = parseInt(el.dataset.min, 10);
-        if (n > min) {
-          el.dataset.count = String(n - 1);
+        var n = parseInt(el.dataset.count, 10) - 1;
+        el.dataset.count = String(n);
+        if (n > 0) {
           render(el);
+          scheduleNext(el);
+        } else {
+          var btn = el.closest('.btn');
+          if (btn) {
+            btn.classList.add('esgotado');
+            btn.setAttribute('aria-hidden', 'true');
+            btn.setAttribute('tabindex', '-1');
+          }
         }
-        if (n - 1 > min) { scheduleNext(el); }
       }, delay);
     }
     Array.prototype.forEach.call(document.querySelectorAll('.vagas'), function (el) {
