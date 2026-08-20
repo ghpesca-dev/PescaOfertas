@@ -16,6 +16,10 @@
     --catch: #ff5a1f;
     --catch-bright: #ff8548;
     --brand-blue: #0568bc;
+    --wa-green: #3fe07d;
+    --wa-green-2: #27c164;
+    --wa-green-alt: #57e691;
+    --wa-teal: #075e54;
     --label-size: 1.4rem;
     --icon-size: 2.15rem;
     --sub-size: 0.92rem;
@@ -56,12 +60,13 @@
   }
   h1 em { font-style: normal; color: var(--brand-blue); }
   .lede {
-    margin: 6px auto 0;
+    margin: 10px auto 0;
     max-width: 320px;
-    color: var(--fog);
-    font-size: 0.8rem;
-    font-weight: 500;
-    line-height: 1.4;
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
   }
   .board {
     flex: 1;
@@ -79,16 +84,28 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--card);
+    background: linear-gradient(155deg, var(--wa-green), var(--wa-green-2));
     color: var(--ink);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: 28px;
     padding: 8px 16px;
-    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 18px -10px rgba(7, 94, 84, 0.65), 0 2px 4px rgba(0, 0, 0, 0.15);
   }
-  .btn.alt { background: var(--card-alt); }
+  .btn.alt { background: linear-gradient(155deg, var(--wa-green-alt), var(--wa-green)); }
   .btn:active { transform: scale(0.98); }
-  .icon { flex-shrink: 0; font-size: var(--icon-size); width: 1.3em; text-align: center; }
+  .icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(7, 94, 84, 0.25);
+    font-size: calc(var(--icon-size) * 0.62);
+    line-height: 1;
+  }
   .text {
     flex: 1;
     min-width: 0;
@@ -112,18 +129,35 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .vagas {
+    margin-top: 2px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--catch);
+    letter-spacing: 0.01em;
+    transition: color 0.3s ease;
+  }
+  .vagas.low { color: #d0271d; }
+  .vagas .tick { display: inline-block; animation: vagas-pulse 0.4s ease; }
+  @keyframes vagas-pulse {
+    0% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vagas .tick { animation: none; }
+  }
   .go {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2em;
-    height: 2em;
+    width: 2.3em;
+    height: 2.3em;
     border-radius: 50%;
-    background: var(--catch);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--wa-teal);
     font-weight: 700;
-    font-size: calc(var(--label-size) * 0.55);
+    font-size: calc(var(--label-size) * 0.68);
   }
   .mascot {
     display: block;
@@ -148,44 +182,44 @@
 <div class="wrap">
   <header>
     <h1>Pesca <em>Ofertas</em></h1>
-    <p class="lede">Oferta boa cai direto no seu WhatsApp, de graça e sem cadastro.</p>
+    <p class="lede">Escolha o seu grupo preferido!</p>
     <img class="mascot" src="mascote.webp" alt="Mascote Pesca Ofertas mostrando cupom de desconto no celular" width="700" height="700">
   </header>
 
   <div class="board">
     <a class="btn" href="https://chat.whatsapp.com/H6SD45KbbU3CBnhA5gjjPT" target="_blank" rel="noopener" data-goatcounter-click="/click/index/geral" data-goatcounter-title="Clique: Geral">
       <span class="icon">🛍️</span>
-      <span class="text"><span class="label">Geral</span><span class="sub">Um pouco de cada categoria</span></span>
+      <span class="text"><span class="label">Geral</span><span class="sub">Um pouco de cada categoria</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/EcdJmrtcFMMCWs2FJhTGIf" target="_blank" rel="noopener" data-goatcounter-click="/click/index/gamer-eletronicos" data-goatcounter-title="Clique: Gamer e Eletrônicos">
       <span class="icon">🎮</span>
-      <span class="text"><span class="label">Gamer e Eletrônicos</span><span class="sub">Peças pra PC, notebook, celular</span></span>
+      <span class="text"><span class="label">Gamer e Eletrônicos</span><span class="sub">Peças pra PC, notebook, celular</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/Crjl8uClUWLDCA36L6VIV8" target="_blank" rel="noopener" data-goatcounter-click="/click/index/moda" data-goatcounter-title="Clique: Moda">
       <span class="icon">👕</span>
-      <span class="text"><span class="label">Moda</span><span class="sub">Roupa, calçado, acessórios</span></span>
+      <span class="text"><span class="label">Moda</span><span class="sub">Roupa, calçado, acessórios</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/FoBQJwn96HrCVJgTqrZrxm" target="_blank" rel="noopener" data-goatcounter-click="/click/index/casa" data-goatcounter-title="Clique: Casa">
       <span class="icon">🏠</span>
-      <span class="text"><span class="label">Casa</span><span class="sub">Cozinha, decoração, eletro</span></span>
+      <span class="text"><span class="label">Casa</span><span class="sub">Cozinha, decoração, eletro</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DYx0JkwXGrZ8i8bEXPv7tQ" target="_blank" rel="noopener" data-goatcounter-click="/click/index/beleza" data-goatcounter-title="Clique: Beleza">
       <span class="icon">💄</span>
-      <span class="text"><span class="label">Beleza</span><span class="sub">Perfume, skincare, maquiagem</span></span>
+      <span class="text"><span class="label">Beleza</span><span class="sub">Perfume, skincare, maquiagem</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn alt" href="https://chat.whatsapp.com/GUEJk75Q7Fd7xwNi4N3Bdm" target="_blank" rel="noopener" data-goatcounter-click="/click/index/fitness" data-goatcounter-title="Clique: Fitness">
       <span class="icon">🏋️</span>
-      <span class="text"><span class="label">Fitness</span><span class="sub">Suplemento, roupa de treino</span></span>
+      <span class="text"><span class="label">Fitness</span><span class="sub">Suplemento, roupa de treino</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
     <a class="btn" href="https://chat.whatsapp.com/DBJ7U9xB2xR8ts9vNYl5tL" target="_blank" rel="noopener" data-goatcounter-click="/click/index/pets" data-goatcounter-title="Clique: Pets">
       <span class="icon">🐾</span>
-      <span class="text"><span class="label">Pets</span><span class="sub">Ração, brinquedo, acessórios</span></span>
+      <span class="text"><span class="label">Pets</span><span class="sub">Ração, brinquedo, acessórios</span><span class="vagas" data-min="1">🔥 &nbsp;vagas restantes</span></span>
       <span class="go">→</span>
     </a>
   </div>
@@ -197,3 +231,38 @@
     </p>
   </footer>
 </div>
+
+<script>
+  // Contador de vagas: só visual, sem lógica real por trás.
+  // Cada botão sorteia seu número inicial (8 a 15) no carregamento da página e,
+  // de forma independente dos outros, perde 1 vaga em um intervalo aleatório
+  // entre 2 e 10 segundos, até chegar no piso mínimo.
+  (function () {
+    function randInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function render(el) {
+      var n = parseInt(el.dataset.count, 10);
+      var min = parseInt(el.dataset.min, 10);
+      el.classList.toggle('low', n <= min + 2);
+      el.innerHTML = '🔥 <span class="tick">' + n + '</span> vagas restantes';
+    }
+    function scheduleNext(el) {
+      var delay = randInt(2000, 10000);
+      setTimeout(function () {
+        var n = parseInt(el.dataset.count, 10);
+        var min = parseInt(el.dataset.min, 10);
+        if (n > min) {
+          el.dataset.count = String(n - 1);
+          render(el);
+        }
+        if (n - 1 > min) { scheduleNext(el); }
+      }, delay);
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.vagas'), function (el) {
+      el.dataset.count = String(randInt(8, 15));
+      render(el);
+      scheduleNext(el);
+    });
+  })();
+</script>
